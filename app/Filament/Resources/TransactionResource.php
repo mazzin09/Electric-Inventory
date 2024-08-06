@@ -29,7 +29,7 @@ class TransactionResource extends Resource
             ->schema([
                 TextInput::make('quantity')->required(),
                 TextInput::make('transaction_type')->required(),
-                TextInput::make('date')->required(),
+                // TextInput::make('date')->required(),
                 Select::make('item_id')
                 ->label('Item')
                 ->options(Item::all()->pluck('name','id')),
@@ -41,9 +41,12 @@ class TransactionResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('id'),
+                TextColumn::make('date')
+                ->label('Entered Date')
+                ->date('Y M'),
+                TextColumn::make('item.name'),
                 TextColumn::make('transaction_type'),
                 TextColumn::make('quantity'),
-                TextColumn::make('date'),
             ])
             ->filters([
                 //

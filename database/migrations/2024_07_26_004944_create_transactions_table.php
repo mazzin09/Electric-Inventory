@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('item_id');
             $table->float('quantity');
             $table->string('transaction_type'); //ENUM
-            $table->string('date'); // Actual date should be added
+            // $table->string('date'); // Actual date should be added
             $table->timestamps();
 
 

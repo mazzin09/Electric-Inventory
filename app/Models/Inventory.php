@@ -10,4 +10,8 @@ class Inventory extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function item(){
+        return $this->belongsTo(Item::class);
+    }
 }

@@ -41,6 +41,7 @@ class InventoryResource extends Resource
             ->columns([
                 TextColumn::make('id'),
                 TextColumn::make('sku'),
+                TextColumn::make('item.name'),
                 TextColumn::make('quantity'),
             ])
             ->filters([

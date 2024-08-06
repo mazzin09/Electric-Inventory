@@ -39,6 +39,7 @@ class ItemResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('id'),
+                TextColumn::make('category.name'),
                 TextColumn::make('name'),
                 // TextColumn::make('category')
             ])
