@@ -13,4 +13,9 @@ class Category extends Model
     //     'name',
     // ];
     protected $guarded = [];
+
+    public function item()
+    {
+        return $this->hasMany('App\Models\Item');
+    }
 }

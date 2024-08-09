@@ -14,4 +14,14 @@ class Item extends Model
     public function category(){
         return $this->belongsTo(Category::class);
     }
+
+    public function inventory()
+    {
+        return $this->hasMany('App\Models\Inventory');
+    }
+
+    public function transaction()
+    {
+        return $this->hasMany('App\Models\Transaction');
+    }
 }
