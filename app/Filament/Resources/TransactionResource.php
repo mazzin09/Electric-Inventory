@@ -28,7 +28,13 @@ class TransactionResource extends Resource
         return $form
             ->schema([
                 TextInput::make('quantity')->required(),
-                TextInput::make('transaction_type')->required(),
+                // TextInput::make('transaction_type')->required(),
+                Select::make('transaction_type')->required()
+                ->label('Type')
+                ->options([
+                    'sale' => 'sale',
+                    'purchase' => 'purchase'
+                ]),
                 // TextInput::make('date')->required(),
                 Select::make('item_id')
                 ->label('Item')
