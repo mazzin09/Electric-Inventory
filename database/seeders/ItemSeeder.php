@@ -14,6 +14,9 @@ class ItemSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Item::factory(20)->create();
+        $categories = \App\Models\Category::all()->pluck('id');
+        \App\Models\Item::factory(20)->create([
+           'category_id' => fn() => $categories->random(),
+        ]);
     }
 }

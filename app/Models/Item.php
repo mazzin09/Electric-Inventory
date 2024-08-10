@@ -17,7 +17,7 @@ class Item extends Model
 
     public function inventory()
     {
-        return $this->hasMany('App\Models\Inventory');
+        return $this->hasOne('App\Models\Inventory');
     }
 
     public function transaction()
