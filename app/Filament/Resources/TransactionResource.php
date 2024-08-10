@@ -53,6 +53,7 @@ class TransactionResource extends Resource
                 TextColumn::make('item.name'),
                 TextColumn::make('transaction_type'),
                 TextColumn::make('quantity'),
+                TextColumn::make('total_amount'),
             ])
             ->filters([
                 //

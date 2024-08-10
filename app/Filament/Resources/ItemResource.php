@@ -41,6 +41,8 @@ class ItemResource extends Resource
                 TextColumn::make('id'),
                 TextColumn::make('category.name'),
                 TextColumn::make('name'),
+                TextColumn::make('cost_price'),
+                TextColumn::make('selling_price'),
                 // TextColumn::make('category')
             ])
             ->filters([
