@@ -10,14 +10,49 @@ use App\Models\Transaction;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Inventory;
 use Illuminate\Support\Str;
+use App\Models\Item;
 
 class CreateTransaction extends CreateRecord
 {
     protected static string $resource = TransactionResource::class;
 
+    // protected function handleRecordCreation(array $data): Model
+    // {
+    //     $transaction = static::getModel()::create($data);
+    //     $inventory = Inventory::where('item_id', $data['item_id'])->first();
+    //     if(Str::lower($data['transaction_type']) === 'purchase' ){
+    //         $inventory->update([
+    //             'quantity' => $inventory->quantity + $data['quantity']
+    //         ]);
+    //     }
+
+    //     if(Str::lower($data['transaction_type']) === 'sale' ){
+    //         $inventory->update([
+    //             'quantity' => $inventory->quantity - $data['quantity'],
+    //             $dd('hello')
+    //             // 'total_amount' => $transaction->total_amount - $inventory->quantity * $inventory->selling_price ,
+    //         ]);
+    //     }
+
+    //     return $transaction;
+    // }
     protected function handleRecordCreation(array $data): Model
     {
-        $transaction = static::getModel()::create($data);
+$total_amount = 0;
+	$item = Item::find($data['item_id']);
+   if(Str::lower($data['transaction_type']) === 'purchase' ){
+	$total_amount = $data['quantity'] * $item->cost_price;
+}
+
+if(Str::lower($data['transaction_type']) === 'sale' ){
+	$total_amount = $data['quantity'] * $item->selling_price;
+}
+
+        $transaction = static::getModel()::create([
+
+'total_amount' => $total_amount,
+// aru column haru esma lekha hai
+]);
         $inventory = Inventory::where('item_id', $data['item_id'])->first();
         if(Str::lower($data['transaction_type']) === 'purchase' ){
             $inventory->update([
@@ -33,4 +68,5 @@ class CreateTransaction extends CreateRecord
 
         return $transaction;
     }
+
 }

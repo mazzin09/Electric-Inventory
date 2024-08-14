@@ -31,6 +31,8 @@ class ItemResource extends Resource
                 Select::make('category_id')
                 ->label('Category')
                 ->options(Category::all()->pluck('name','id')),
+                TextInput::make('cost_price')->required(),
+                TextInput::make('selling_price')->required(),
             ]);
     }
 
